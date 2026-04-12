@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartAlloc — Intelligent Disaster Relief Coordination</title>
+  <meta name="description" content="Real-time volunteer–NGO matching platform: ingests survey data, ranks needs by urgency (Severity/Time), and connects relief workers with precision." />
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAV ═══════════════════════ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a class="nav-brand" href="/" aria-label="SmartAlloc Home">
+      <div class="nav-logo" aria-hidden="true">🌐</div>
+      <span class="nav-title">Smart<span>Alloc</span></span>
+    </a>
+    <div class="nav-tabs" role="tablist">
+      <button class="nav-tab active" data-page="dashboard" id="tab-dashboard" role="tab" aria-selected="true">
+        <span class="tab-icon" aria-hidden="true">🏠</span> Dashboard
+      </button>
+      <button class="nav-tab" data-page="needs" id="tab-needs" role="tab" aria-selected="false">
+        <span class="tab-icon" aria-hidden="true">🚨</span> Needs
+      </button>
+      <button class="nav-tab" data-page="volunteers" id="tab-volunteers" role="tab" aria-selected="false">
+        <span class="tab-icon" aria-hidden="true">👥</span> Volunteers
+      </button>
+      <button class="nav-tab" data-page="matches" id="tab-matches" role="tab" aria-selected="false">
+        <span class="tab-icon" aria-hidden="true">🤝</span> Matches
+      </button>
+      <button class="nav-tab" data-page="verify" id="tab-verify" role="tab" aria-selected="false">
+        <span class="tab-icon" aria-hidden="true">✅</span> Verify
+      </button>
+      <button class="nav-tab" data-page="map" id="tab-map" role="tab" aria-selected="false">
+        <span class="tab-icon" aria-hidden="true">🗺️</span> Live Map
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════ PAGES ═══════════════════════ -->
+  <main class="app-main" id="app-main">
+
+    <!-- Dashboard -->
+    <section class="page active" id="page-dashboard" role="tabpanel" aria-labelledby="tab-dashboard">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>Command Centre</h1>
+          <p class="page-subtitle">Real-time overview of all relief operations</p>
+        </div>
+      </div>
+      <div id="dashboard-content"><div class="loading"><div class="spinner"></div> Loading dashboard…</div></div>
+    </section>
+
+    <!-- Needs -->
+    <section class="page" id="page-needs" role="tabpanel" aria-labelledby="tab-needs">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>Needs Registry</h1>
+          <p class="page-subtitle">All identified needs ranked by urgency score <code style="font-family:'JetBrains Mono',monospace;font-size:0.8em;color:var(--teal)">U = Severity / TimeRemaining</code></p>
+        </div>
+        <div class="page-header-actions">
+          <button class="btn btn-secondary" id="btn-import-survey">📄 Import Survey</button>
+          <button class="btn btn-primary" id="btn-add-need">+ Add Need</button>
+        </div>
+      </div>
+      <div id="needs-content"><div class="loading"><div class="spinner"></div> Loading needs…</div></div>
+    </section>
+
+    <!-- Volunteers -->
+    <section class="page" id="page-volunteers" role="tabpanel" aria-labelledby="tab-volunteers">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>Volunteer Network</h1>
+          <p class="page-subtitle">Available volunteers and NGO partners</p>
+        </div>
+        <div class="page-header-actions">
+          <button class="btn btn-primary" id="btn-add-volunteer">+ Register Volunteer</button>
+        </div>
+      </div>
+      <div id="volunteers-content"><div class="loading"><div class="spinner"></div> Loading volunteers…</div></div>
+    </section>
+
+    <!-- Matches -->
+    <section class="page" id="page-matches" role="tabpanel" aria-labelledby="tab-matches">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>Matching Engine</h1>
+          <p class="page-subtitle">Java microservice · Score = Skill Overlap × 60% + Haversine Proximity × 40%</p>
+        </div>
+        <div class="page-header-actions">
+          <button class="btn btn-primary btn-lg" id="btn-run-matching">⚡ Run Matching Engine</button>
+        </div>
+      </div>
+      <div id="matches-content"><div class="loading"><div class="spinner"></div> Loading matches…</div></div>
+    </section>
+
+    <!-- Verify -->
+    <section class="page" id="page-verify" role="tabpanel" aria-labelledby="tab-verify">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>Verification Loop</h1>
+          <p class="page-subtitle">Track task completion: Assigned → Volunteer Done → NGO Confirmed</p>
+        </div>
+      </div>
+      <div id="verify-content"><div class="loading"><div class="spinner"></div> Loading verifications…</div></div>
+    </section>
+
+    <!-- Map -->
+    <section class="page" id="page-map" role="tabpanel" aria-labelledby="tab-map">
+      <div class="page-header">
+        <div class="page-header-left">
+          <h1>Live Map</h1>
+          <p class="page-subtitle">Geographic view — need urgency by marker size, matched pairs connected by lines</p>
+        </div>
+        <div class="page-header-actions">
+          <button class="btn btn-secondary" id="btn-refresh-map">↺ Refresh</button>
+        </div>
+      </div>
+      <div id="map-container">
+        <div id="map" aria-label="Interactive map of needs and volunteers"></div>
+        <div class="map-legend" aria-label="Map legend">
+          <div class="legend-title">Legend</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div> Critical Need (U≥1)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div> High Priority (U≥0.3)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div> Normal Need</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> Available Volunteer</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div> NGO Partner</div>
+          <div class="legend-item" style="gap: 8px;">
+            <div style="width:22px;height:2px;background:#14b8a6;border-top:2px dashed #14b8a6;flex-shrink:0"></div> Accepted Match
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ MODALS ═══════════════════════ -->
+
+  <!-- Add Need -->
+  <div class="modal-overlay" id="modal-add-need" role="dialog" aria-modal="true" aria-labelledby="modal-need-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-need-title">🚨 Register New Need</h3>
+        <button class="btn btn-ghost btn-icon" data-close-modal="modal-add-need" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-add-need" novalidate>
+          <div class="form-group">
+            <label for="need-title">Title *</label>
+            <input type="text" id="need-title" placeholder="e.g. Emergency Insulin Supply" required />
+          </div>
+          <div class="form-group">
+            <label for="need-description">Description</label>
+            <textarea id="need-description" placeholder="Describe the situation and what help is needed…"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="need-category">Category</label>
+              <select id="need-category">
+                <option value="medical">🏥 Medical</option>
+                <option value="food">🍱 Food</option>
+                <option value="shelter">🏠 Shelter</option>
+                <option value="water">💧 Water</option>
+                <option value="rescue">🚁 Rescue</option>
+                <option value="infrastructure">🔧 Infrastructure</option>
+                <option value="care">❤️ Care</option>
+                <option value="education">📚 Education</option>
+                <option value="mental-health">🧠 Mental Health</option>
+                <option value="legal">⚖️ Legal</option>
+                <option value="other">📦 Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="need-status">Status</label>
+              <select id="need-status">
+                <option value="open">Open</option>
+                <option value="in_progress">In Progress</option>
+                <option value="done">Done</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="need-severity">Severity (1–10) *</label>
+              <input type="number" id="need-severity" min="1" max="10" step="0.1" value="5.0" required />
+            </div>
+            <div class="form-group">
+              <label for="need-time">Time Remaining (hours) *</label>
+              <input type="number" id="need-time" min="0.5" step="0.5" value="24" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="need-lat">Latitude</label>
+              <input type="number" id="need-lat" step="any" placeholder="e.g. 28.6139" />
+            </div>
+            <div class="form-group">
+              <label for="need-lng">Longitude</label>
+              <input type="number" id="need-lng" step="any" placeholder="e.g. 77.2090" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="need-location-name">Location Name</label>
+            <input type="text" id="need-location-name" placeholder="e.g. Delhi Flood Camp" />
+          </div>
+          <div class="form-group">
+            <label for="need-skills">Skills Required <span style="color:var(--text-muted);font-weight:400">(comma-separated)</span></label>
+            <input type="text" id="need-skills" placeholder="e.g. medical, first-aid, logistics" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal="modal-add-need">Cancel</button>
+        <button class="btn btn-primary" id="btn-submit-need">Save Need</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Volunteer -->
+  <div class="modal-overlay" id="modal-add-volunteer" role="dialog" aria-modal="true" aria-labelledby="modal-vol-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-vol-title">👤 Register Volunteer</h3>
+        <button class="btn btn-ghost btn-icon" data-close-modal="modal-add-volunteer" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-add-volunteer" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vol-name">Full Name *</label>
+              <input type="text" id="vol-name" placeholder="Full name" required />
+            </div>
+            <div class="form-group">
+              <label for="vol-role">Role</label>
+              <select id="vol-role">
+                <option value="volunteer">Volunteer</option>
+                <option value="ngo">NGO Partner</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vol-email">Email *</label>
+              <input type="email" id="vol-email" placeholder="email@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="vol-phone">Phone</label>
+              <input type="tel" id="vol-phone" placeholder="+91-9800000000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vol-skills">Skills <span style="color:var(--text-muted);font-weight:400">(comma-separated)</span></label>
+            <input type="text" id="vol-skills" placeholder="e.g. medical, first-aid, driving" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vol-lat">Latitude</label>
+              <input type="number" id="vol-lat" step="any" placeholder="28.6139" />
+            </div>
+            <div class="form-group">
+              <label for="vol-lng">Longitude</label>
+              <input type="number" id="vol-lng" step="any" placeholder="77.2090" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vol-location">Location Name</label>
+            <input type="text" id="vol-location" placeholder="e.g. Delhi North" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal="modal-add-volunteer">Cancel</button>
+        <button class="btn btn-primary" id="btn-submit-volunteer">Register</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Survey -->
+  <div class="modal-overlay" id="modal-import-survey" role="dialog" aria-modal="true" aria-labelledby="modal-survey-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-survey-title">📄 Import Survey Data</h3>
+        <button class="btn btn-ghost btn-icon" data-close-modal="modal-import-survey" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.875rem;">
+          Upload a CSV or JSON file. The parser auto-detects column names and bulk-imports needs — flexible enough to handle real-world messy exports.
+        </p>
+        <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Drop zone for file upload">
+          <div class="dropzone-icon" aria-hidden="true">📂</div>
+          <div class="dropzone-text">
+            <strong>Drop your file here</strong> or click to browse<br>
+            <span style="font-size:0.75rem;margin-top:4px;display:block;">Supports .csv and .json · Max 5 MB</span>
+          </div>
+          <input type="file" id="survey-file-input" accept=".csv,.json" style="display:none" aria-hidden="true" />
+        </div>
+        <div id="import-result" style="margin-top:16px;display:none;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal="modal-import-survey">Close</button>
+        <button class="btn btn-primary" id="btn-upload-survey" disabled>Upload & Import</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLmY=" crossorigin=""></script>
+
+  <!-- Page modules (must load before app.js) -->
+  <script src="pages/dashboard.js"></script>
+  <script src="pages/needs.js"></script>
+  <script src="pages/volunteers.js"></script>
+  <script src="pages/matches.js"></script>
+  <script src="pages/verify.js"></script>
+  <script src="pages/map.js"></script>
+
+  <!-- Main app router + API client -->
+  <script src="app.js"></script>
+
+</body>
+</html>

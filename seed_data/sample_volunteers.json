@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Dr. Priya Sharma",
+    "email": "priya.sharma@help.org",
+    "phone": "+91-9810001001",
+    "skills": ["medical", "first-aid", "nursing"],
+    "lat": 28.6200,
+    "lng": 77.2100,
+    "location_name": "Delhi North",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Rahul Verma",
+    "email": "rahul.v@volunteer.in",
+    "phone": "+91-9810001002",
+    "skills": ["logistics", "driving", "construction"],
+    "lat": 19.0850,
+    "lng": 72.8900,
+    "location_name": "Mumbai Central",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Anjali Singh",
+    "email": "anjali.s@ngo.org",
+    "phone": "+91-9810001003",
+    "skills": ["cooking", "logistics", "care"],
+    "lat": 19.0700,
+    "lng": 72.8600,
+    "location_name": "Mumbai South",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Vikram Patel",
+    "email": "vikram.p@rescue.in",
+    "phone": "+91-9810001004",
+    "skills": ["rescue", "swimming", "driving"],
+    "lat": 23.0300,
+    "lng": 72.5800,
+    "location_name": "Ahmedabad West",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Meena Krishnan",
+    "email": "meena.k@care.org",
+    "phone": "+91-9810001005",
+    "skills": ["nursing", "medical", "counseling"],
+    "lat": 13.0900,
+    "lng": 80.2800,
+    "location_name": "Chennai Central",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Arjun Reddy",
+    "email": "arjun.r@tech.in",
+    "phone": "+91-9810001006",
+    "skills": ["logistics", "driving", "construction"],
+    "lat": 17.3900,
+    "lng": 78.4900,
+    "location_name": "Hyderabad East",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Sunita Gupta",
+    "email": "sunita.g@teach.org",
+    "phone": "+91-9810001007",
+    "skills": ["teaching", "counseling", "psychology"],
+    "lat": 28.7100,
+    "lng": 77.1100,
+    "location_name": "Delhi East",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Mohan Das",
+    "email": "mohan.d@build.in",
+    "phone": "+91-9810001008",
+    "skills": ["construction", "logistics", "driving"],
+    "lat": 22.5800,
+    "lng": 88.3700,
+    "location_name": "Kolkata North",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Kavitha Nair",
+    "email": "kavitha.n@legal.org",
+    "phone": "+91-9810001009",
+    "skills": ["legal", "documentation", "counseling"],
+    "lat": 26.8500,
+    "lng": 80.9500,
+    "location_name": "Lucknow Central",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Ravi Kumar",
+    "email": "ravi.k@fire.in",
+    "phone": "+91-9810001010",
+    "skills": ["rescue", "first-aid", "driving"],
+    "lat": 30.7400,
+    "lng": 76.7900,
+    "location_name": "Chandigarh West",
+    "role": "volunteer",
+    "available": true
+  },
+  {
+    "name": "Disaster Relief India",
+    "email": "admin@dri.org",
+    "phone": "+91-9810009001",
+    "skills": [],
+    "lat": 28.6139,
+    "lng": 77.2090,
+    "location_name": "Delhi HQ",
+    "role": "ngo",
+    "available": true
+  },
+  {
+    "name": "Sahyog Foundation",
+    "email": "admin@sahyog.org",
+    "phone": "+91-9810009002",
+    "skills": [],
+    "lat": 19.0760,
+    "lng": 72.8777,
+    "location_name": "Mumbai HQ",
+    "role": "ngo",
+    "available": true
+  }
+]
