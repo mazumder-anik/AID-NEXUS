@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  matcher:
+    build:
+      context: ./matcher
+      dockerfile: Dockerfile
+    container_name: sra-matcher
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8080/actuator/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 8
+      start_period: 60s
+    networks:
+      - sra-network
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sra-backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - sra-data:/app/data
+      - ./seed_data:/app/seed_data:ro
+    environment:
+      - PORT=3000
+      - DB_PATH=/app/data/smart_resource.db
+      - MATCHER_URL=http://matcher:8080
+    depends_on:
+      matcher:
+        condition: service_healthy
+    networks:
+      - sra-network
+    restart: unless-stopped
+
+volumes:
+  sra-data:
+    driver: local
+
+networks:
+  sra-network:
+    driver: bridge
