@@ -363,6 +363,29 @@ def get_timeline(db: Session = Depends(get_db)):
     return {"timeline": dict(sorted(weekly.items()))}
 
 
+from pydantic import BaseModel
+class AIPrompt(BaseModel):
+    prompt: str
+
+@app.post("/ask-ai", tags=["AI"])
+def ask_ai_endpoint(data: AIPrompt, db: Session = Depends(get_db)):
+    """Ask Gemini AI a question about the current open needs."""
+    from backend.ai_assistant import ask_gemini
+    
+    # Gather context from open needs
+    open_needs = db.query(Need).filter(Need.status == "open").all()
+    if not open_needs:
+        context = "There are no open needs currently."
+    else:
+        context_lines = []
+        for n in open_needs:
+            context_lines.append(f"- [Urgency: {n.urgency_badge}] {n.category.upper()} in {n.area}: {n.description} (Reported count: {n.reported_count})")
+        context = "\n".join(context_lines)
+    
+    response = ask_gemini(data.prompt, context)
+    return {"response": response}
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)

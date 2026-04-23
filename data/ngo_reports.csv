@@ -1,0 +1,19 @@
+report_id,zone,geo_lat,geo_lng,issue_category,summary,beneficiaries,ngo_source,report_date,case_status
+NGO001,"Hadapsar, Pune",18.52003,73.94774,Medical Help,83 people need primary health checkups,83,ngo_report,2026/04/10,open
+NGO002,"Dharavi, Mumbai",19.05571,72.83216,SANITATION,290 households lack safe drinking water,290,ngo_report,2026/02/23,open
+NGO003,"Mankhurd, Mumbai",19.04333,72.93284,FOOD,224 children require mid-day meal support,224,ngo_report,2026/03/29,open
+NGO004,"Dharavi, Mumbai",19.0288,72.85474,Shelter Aid,124 homeless individuals need night shelter,124,ngo_report,2026/03/06,open
+NGO005,"Malvani, Mumbai",19.21079,72.82341,medical,27 diabetic patients without medication,27,ngo_report,2026/03/19,open
+NGO006,"Kurla East, Mumbai",19.05127,72.90494,EDUCATION,Tutoring required for 26 students,26,ngo_report,2026/04/19,open
+NGO007,"Malvani, Mumbai",19.16554,72.79036,sanitation,98 households without functional toilets,98,ngo_report,2026/03/03,open
+NGO008,"Kurla East, Mumbai",19.04115,72.8692,shelter,89 homeless individuals need night shelter,89,ngo_report,2026/03/04,pending
+NGO009,"Govandi, Mumbai",19.08408,72.93174,Shelter,Temporary shelter needed for 46 families,46,ngo_report,2026/04/13,open
+NGO010,"Shivaji Nagar, Pune",18.5621,73.90838,medical,172 people need primary health checkups,172,ngo_report,2026/04/13,open
+NGO011,"Kurla East, Mumbai",19.07402,72.8964,EDUCATION,251 children lack school supplies for new term,251,ngo_report,2026/04/12,pending
+NGO012,"Malvani, Mumbai",19.209,72.78075,medical,Mobile medical camp needed — 287 patients waiting,287,ngo_report,2026/03/10,open
+NGO013,"Kurla East, Mumbai",19.04259,72.85058,sanitation,Open defecation zone with 45 affected families,45,ngo_report,2026/04/23,open
+NGO014,"Hadapsar, Pune",18.49752,73.91709,education,Tutoring required for 187 students,187,ngo_report,2026/02/26,open
+NGO015,"Shivaji Nagar, Pune",18.60605,73.94038,SHELTER,134 households with damaged roofs before monsoon,134,ngo_report,2026/03/07,open
+NGO016,"Kothrud, Pune",18.51977,73.82053,SHELTER,Temporary shelter needed for 234 families,234,ngo_report,2026/03/26,open
+NGO017,"Malvani, Mumbai",19.16993,72.81453,education,Digital literacy needed for 157 youth,157,ngo_report,2026/03/05,open
+NGO018,"Bhandup West, Mumbai",19.15422,72.92858,Education,Tutoring required for 277 students,277,ngo_report,2026/03/18,open

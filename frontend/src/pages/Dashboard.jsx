@@ -5,6 +5,7 @@ import NeedsMap        from '../components/NeedsMap.jsx';
 import UrgentNeedsPanel from '../components/UrgentNeedsPanel.jsx';
 import MatchPanel       from '../components/MatchPanel.jsx';
 import UploadPanel      from '../components/UploadPanel.jsx';
+import AIAssistant      from '../components/AIAssistant.jsx';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ResponsiveContainer
 } from 'recharts';
@@ -99,16 +100,28 @@ export default function Dashboard() {
               className={`tab ${rightTab==='upload'?'active':''}`}
               onClick={() => setRightTab('upload')}
             >📂 Upload</div>
+            <div
+              className={`tab ${rightTab==='ai'?'active':''}`}
+              onClick={() => setRightTab('ai')}
+            >✨ AI Assistant</div>
           </div>
 
-          {rightTab === 'needs' ? (
+          {rightTab === 'needs' && (
             <UrgentNeedsPanel
               refresh={rightRefresh}
               onMatchRun={handleMatchRun}
             />
-          ) : (
+          )}
+          
+          {rightTab === 'upload' && (
             <div style={{ height:'50%', overflowY:'auto', borderBottom:'1px solid rgba(99,102,241,0.15)' }}>
               <UploadPanel onUploadDone={handleUploadDone}/>
+            </div>
+          )}
+
+          {rightTab === 'ai' && (
+            <div style={{ height:'50%', overflowY:'auto', borderBottom:'1px solid rgba(99,102,241,0.15)' }}>
+              <AIAssistant />
             </div>
           )}
 

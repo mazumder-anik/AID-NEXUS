@@ -1,0 +1,24 @@
+need_id,area,lat,lng,category,description,reported_count,source,reported_at,status
+NS001,"Dharavi, Mumbai",19.03097,72.85127,medical,Mobile medical camp needed — 169 patients waiting,169,field_survey,2026-02-27,open
+NS002,"Kothrud, Pune",18.49083,73.83076,education,Digital literacy needed for 130 youth,130,field_survey,2026-03-10,open
+NS003,"Yerwada, Pune",18.53076,73.89381,education,166 girls dropped from school — support needed,166,field_survey,2026-03-22,open
+NS004,"Hadapsar, Pune",18.52356,73.95923,sanitation,Open defecation zone with 15 affected families,15,field_survey,2026-04-22,open
+NS005,"Mankhurd, Mumbai",19.05973,72.96445,sanitation,186 households lack safe drinking water,186,field_survey,2026-04-04,open
+NS006,"Yerwada, Pune",18.57662,73.92638,education,Tutoring required for 85 students,85,field_survey,2026-03-08,open
+NS007,"Malvani, Mumbai",19.17593,72.83008,sanitation,Sewage overflow affecting 56 homes,56,field_survey,2026-04-04,open
+NS008,"Kurla East, Mumbai",19.0764,72.89328,food,Food drought affecting 108 elderly residents,108,field_survey,2026-04-08,open
+NS009,"Kurla East, Mumbai",19.08275,72.88624,food,Urgent food shortage — 190 households affected,190,field_survey,2026-03-25,open
+NS010,"Govandi, Mumbai",19.08442,72.94144,food,Urgent food shortage — 137 households affected,137,field_survey,2026-04-05,open
+NS011,"Kothrud, Pune",18.53421,73.78749,food,Urgent food shortage — 158 households affected,158,field_survey,2026-04-06,open
+NS012,"Govandi, Mumbai",19.04257,72.90561,food,86 children require mid-day meal support,86,field_survey,2026-02-25,open
+NS013,"Yerwada, Pune",18.58824,73.91501,sanitation,36 households lack safe drinking water,36,field_survey,2026-03-13,open
+NS014,"Dharavi, Mumbai",19.05951,72.84338,medical,Mobile medical camp needed — 164 patients waiting,,field_survey,2026-03-20,open
+NS015,"Mankhurd, Mumbai",19.05452,72.94313,medical,53 diabetic patients without medication,53,field_survey,2026-04-03,open
+NS016,"Kothrud, Pune",18.50518,73.83005,education,Tutoring required for 103 students,103,field_survey,2026-04-19,open
+NS017,"Malvani, Mumbai",19.18697,72.80666,food,134 children require mid-day meal support,134,field_survey,2026-03-03,open
+NS018,"Govandi, Mumbai",19.05251,72.89853,food,Urgent food shortage — 168 households affected,,field_survey,2026-04-23,open
+NS019,"Govandi, Mumbai",19.08379,72.94595,shelter,152 homeless individuals need night shelter,152,field_survey,2026-03-14,open
+NS020,"Dharavi, Mumbai",19.04732,72.83504,medical,Clean water access causing illness in 188 households,188,field_survey,2026-02-22,open
+NS021,"Mankhurd, Mumbai",19.05973,72.96445,sanitation,186 households lack safe drinking water,186,field_survey,2026-04-23,open
+NS022,"Govandi, Mumbai",19.08379,72.94595,shelter,152 homeless individuals need night shelter,152,field_survey,2026-04-20,open
+NS023,"Govandi, Mumbai",19.08379,72.94595,shelter,152 homeless individuals need night shelter,152,field_survey,2026-04-19,open
