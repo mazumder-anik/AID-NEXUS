@@ -200,7 +200,7 @@ def run_aggregation(extra_df: pd.DataFrame = None) -> pd.DataFrame:
     # Ensure reported_at is datetime
     final["reported_at"] = pd.to_datetime(final["reported_at"])
 
-    print(f"[Aggregator] {len(df)} raw records → {len(final)} clean needs after dedup/merge.")
+    print(f"[Aggregator] {len(df)} raw records -> {len(final)} clean needs after dedup/merge.")
     return final
 
 
