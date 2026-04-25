@@ -211,10 +211,11 @@ def generate_volunteers(n: int = 30) -> list[dict]:
 # ── Write Files ────────────────────────────────────────────────────────────────
 
 def write_source_files():
-    surveys = generate_needs_survey(20)
-    paper   = generate_needs_paper(15)
-    ngo     = generate_needs_ngo(18)
-    volunteers = generate_volunteers(30)
+    # Reduced numbers for faster dev startup
+    surveys = generate_needs_survey(5)
+    paper   = generate_needs_paper(3)
+    ngo     = generate_needs_ngo(4)
+    volunteers = generate_volunteers(5)
 
     # Sample surveys CSV
     pd.DataFrame(surveys).to_csv(
@@ -247,6 +248,9 @@ def seed_database(db):
     from backend.aggregator import run_aggregation
     import json
 
+
+    import time
+    start_time = time.time()
     # Write files first
     write_source_files()
 
@@ -268,6 +272,10 @@ def seed_database(db):
                 status         = "open",
             )
             db.add(need)
+
+    # Timer log for profiling
+    elapsed = time.time() - start_time
+    print(f"[Seed] Database seeding completed in {elapsed:.2f} seconds.")
 
     # Insert volunteers
     import ast
