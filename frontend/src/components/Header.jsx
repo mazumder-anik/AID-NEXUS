@@ -59,9 +59,7 @@ export default function Header({ onDemoRun, onRefresh }) {
             </p>
           </div>
           <div style={{ display:'flex', gap:'8px', alignItems:'center' }}>
-            <button className="btn btn-ghost" onClick={fetchStats} title="Refresh stats">
-              🔄 Refresh
-            </button>
+            
             <button
               className="btn btn-demo"
               onClick={handleDemo}
