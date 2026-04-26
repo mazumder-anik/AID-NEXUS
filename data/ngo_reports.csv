@@ -1,0 +1,19 @@
+report_id,zone,geo_lat,geo_lng,issue_category,summary,beneficiaries,ngo_source,report_date,case_status
+NGO001,"Dharavi, Mumbai",19.06749,72.85897,education,Tutoring required for 105 students,105,ngo_report,2026/03/24,open
+NGO002,"Malvani, Mumbai",19.16191,72.80172,EDUCATION,Digital literacy needed for 195 youth,195,ngo_report,2026/04/02,open
+NGO003,"Mankhurd, Mumbai",19.03058,72.95237,Shelter Aid,39 families displaced after flooding,39,ngo_report,2026/04/11,open
+NGO004,"Hadapsar, Pune",18.52398,73.95758,medical,Clean water access causing illness in 78 households,78,ngo_report,2026/04/19,open
+NGO005,"Hadapsar, Pune",18.48864,73.94215,food_distribution,241 children require mid-day meal support,241,ngo_report,2026/03/27,pending
+NGO006,"Shivaji Nagar, Pune",18.57153,73.94116,education,Digital literacy needed for 69 youth,69,ngo_report,2026/04/18,open
+NGO007,"Hadapsar, Pune",18.50423,73.92652,sanitation,Open defecation zone with 225 affected families,225,ngo_report,2026/04/08,pending
+NGO008,"Dharavi, Mumbai",19.04377,72.87788,sanitation,14 households without functional toilets,14,ngo_report,2026/03/07,open
+NGO009,"Shivaji Nagar, Pune",18.58104,73.92584,medical,Clean water access causing illness in 125 households,125,ngo_report,2026/03/04,open
+NGO010,"Dharavi, Mumbai",19.03508,72.83721,food,119 families need weekly ration kits,119,ngo_report,2026/03/29,open
+NGO011,"Shivaji Nagar, Pune",18.58366,73.92476,Medical Help,Mobile medical camp needed — 180 patients waiting,180,ngo_report,2026/04/20,open
+NGO012,"Bhandup West, Mumbai",19.12641,72.94394,education,53 children lack school supplies for new term,53,ngo_report,2026/03/07,pending
+NGO013,"Shivaji Nagar, Pune",18.60046,73.94149,shelter,34 homeless individuals need night shelter,34,ngo_report,2026/03/24,open
+NGO014,"Govandi, Mumbai",19.0615,72.92392,shelter,Temporary shelter needed for 118 families,118,ngo_report,2026/04/19,open
+NGO015,"Mankhurd, Mumbai",19.05186,72.94576,medical,Mobile medical camp needed — 131 patients waiting,131,ngo_report,2026/03/22,open
+NGO016,"Kurla East, Mumbai",19.09246,72.85221,MEDICAL,277 people need primary health checkups,277,ngo_report,2026/03/10,open
+NGO017,"Govandi, Mumbai",19.03967,72.90439,FOOD,Food drought affecting 58 elderly residents,58,ngo_report,2026/03/07,open
+NGO018,"Bhandup West, Mumbai",19.12414,72.94051,education,56 children lack school supplies for new term,56,ngo_report,2026/03/30,open

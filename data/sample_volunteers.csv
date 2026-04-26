@@ -1,0 +1,31 @@
+volunteer_id,name,lat,lng,skills,availability,max_distance_km,current_task,status
+V001,Sonal Jain,19.0371,72.93026,"[""medical_aid"", ""construction"", ""driving"", ""fundraising""]",both,10.0,,available
+V002,Suresh Yadav,18.59003,73.91701,"[""data_entry"", ""language_translation""]",both,10.0,,available
+V003,Sneha Joshi,18.54324,73.88331,"[""medical_aid""]",weekends,20.0,,available
+V004,Anjali Singh,19.1586,72.83464,"[""counseling""]",weekdays,10.0,,available
+V005,Deepika Nambiar,18.46131,73.94063,"[""community_outreach"", ""teaching""]",both,5.0,,available
+V006,Rohan Desai,18.59984,73.91225,"[""logistics""]",weekdays,15.0,,inactive
+V007,Siddharth Bose,19.17329,72.82812,"[""data_entry"", ""first_aid"", ""driving""]",both,10.0,,inactive
+V008,Vikas Thakur,18.49057,73.82469,"[""construction"", ""first_aid"", ""teaching"", ""driving""]",weekdays,8.0,,available
+V009,Vikram Gupta,19.23735,72.83741,"[""first_aid"", ""logistics"", ""community_outreach"", ""food_distribution""]",both,10.0,,available
+V010,Kavya Menon,18.49913,73.97622,"[""medical_aid""]",both,8.0,,available
+V011,Ananya Iyer,18.48597,73.92113,"[""driving"", ""data_entry""]",weekends,20.0,,inactive
+V012,Manish Tiwari,19.11186,72.91613,"[""driving"", ""data_entry"", ""medical_aid"", ""first_aid""]",both,5.0,,inactive
+V013,Arjun Rao,19.00559,72.82927,"[""first_aid""]",both,15.0,,available
+V014,Pooja Reddy,18.5497,73.92075,"[""food_distribution"", ""driving""]",both,10.0,,available
+V015,Harish Khanna,19.17857,72.97124,"[""data_entry"", ""driving""]",both,8.0,,available
+V016,Nikhil Shah,19.06333,72.93101,"[""first_aid"", ""driving""]",both,15.0,,available
+V017,Tanvi Chawla,19.08034,72.95629,"[""medical_aid"", ""community_outreach"", ""first_aid"", ""driving""]",both,20.0,,available
+V018,Aditya Kumar,18.51776,73.9247,"[""medical_aid"", ""language_translation"", ""community_outreach"", ""food_distribution""]",both,5.0,,inactive
+V019,Meera Nair,19.11636,72.89786,"[""data_entry""]",weekdays,5.0,,available
+V020,Amit Srivastava,19.17871,72.83285,"[""construction"", ""language_translation"", ""driving""]",both,8.0,,available
+V021,Rajesh Pandey,19.14675,72.96311,"[""medical_aid"", ""community_outreach"", ""teaching"", ""language_translation""]",both,10.0,,available
+V022,Karan Sharma,19.14168,72.82427,"[""counseling"", ""first_aid"", ""fundraising""]",weekdays,20.0,,inactive
+V023,Aarav Singh,19.07608,72.89056,"[""data_entry"", ""first_aid"", ""medical_aid"", ""logistics""]",both,15.0,,available
+V024,Rahul Verma,18.5383,73.91307,"[""data_entry"", ""teaching"", ""construction""]",both,5.0,,inactive
+V025,Preety Malhotra,19.23369,72.79878,"[""logistics""]",both,8.0,,available
+V026,Neha Pillai,18.52894,73.88249,"[""language_translation"", ""teaching""]",weekdays,15.0,,available
+V027,Ritu Agarwal,18.5482,73.89093,"[""food_distribution""]",both,10.0,,inactive
+V028,Priya Mehta,19.01353,72.92305,"[""teaching"", ""medical_aid"", ""data_entry"", ""fundraising""]",both,10.0,,available
+V029,Shreya Das,18.60083,73.88274,"[""community_outreach"", ""teaching"", ""driving"", ""data_entry""]",weekdays,5.0,,inactive
+V030,Divya Patel,19.08181,72.87632,"[""medical_aid"", ""data_entry"", ""counseling""]",weekends,20.0,,available

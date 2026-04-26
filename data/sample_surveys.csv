@@ -1,0 +1,24 @@
+need_id,area,lat,lng,category,description,reported_count,source,reported_at,status
+NS001,"Kurla East, Mumbai",19.04565,72.89501,sanitation,116 households lack safe drinking water,116,field_survey,2026-03-14,open
+NS002,"Shivaji Nagar, Pune",18.59879,73.94214,education,Tutoring required for 98 students,98,field_survey,2026-04-05,open
+NS003,"Mankhurd, Mumbai",19.06915,72.96975,food,Food drought affecting 153 elderly residents,153,field_survey,2026-03-05,open
+NS004,"Shivaji Nagar, Pune",18.57452,73.92119,education,136 children lack school supplies for new term,136,field_survey,2026-03-18,open
+NS005,"Bhandup West, Mumbai",19.12383,72.93316,food,58 families need weekly ration kits,,field_survey,2026-03-02,open
+NS006,"Govandi, Mumbai",19.0488,72.91314,medical,81 people need primary health checkups,,field_survey,2026-04-01,open
+NS007,"Mankhurd, Mumbai",19.05134,72.94462,medical,93 diabetic patients without medication,93,field_survey,2026-03-06,open
+NS008,"Dharavi, Mumbai",19.03768,72.85322,sanitation,Sewage overflow affecting 88 homes,88,field_survey,2026-04-20,open
+NS009,"Govandi, Mumbai",19.06204,72.93351,sanitation,130 households lack safe drinking water,130,field_survey,2026-02-25,open
+NS010,"Shivaji Nagar, Pune",18.59314,73.89973,education,Tutoring required for 111 students,111,field_survey,2026-04-15,open
+NS011,"Govandi, Mumbai",19.08053,72.90922,food,Urgent food shortage — 22 households affected,22,field_survey,2026-03-06,open
+NS012,"Dharavi, Mumbai",19.02294,72.85492,shelter,12 homeless individuals need night shelter,12,field_survey,2026-03-29,open
+NS013,"Kurla East, Mumbai",19.08977,72.86473,food,148 families need weekly ration kits,148,field_survey,2026-04-11,open
+NS014,"Mankhurd, Mumbai",19.06138,72.92508,food,Urgent food shortage — 112 households affected,112,field_survey,2026-03-11,open
+NS015,"Malvani, Mumbai",19.17453,72.82703,food,Urgent food shortage — 20 households affected,20,field_survey,2026-03-25,open
+NS016,"Yerwada, Pune",18.54485,73.88102,medical,Clean water access causing illness in 135 households,135,field_survey,2026-04-03,open
+NS017,"Mankhurd, Mumbai",19.0646,72.92295,education,66 children lack school supplies for new term,66,field_survey,2026-04-14,open
+NS018,"Dharavi, Mumbai",19.06676,72.85608,food,12 families need weekly ration kits,12,field_survey,2026-04-17,open
+NS019,"Govandi, Mumbai",19.07376,72.89977,education,Digital literacy needed for 39 youth,39,field_survey,2026-02-24,open
+NS020,"Govandi, Mumbai",19.07477,72.94841,medical,95 people need primary health checkups,95,field_survey,2026-03-02,open
+NS021,"Dharavi, Mumbai",19.06676,72.85608,food,12 families need weekly ration kits,12,field_survey,2026-04-22,open
+NS022,"Dharavi, Mumbai",19.06676,72.85608,food,12 families need weekly ration kits,12,field_survey,2026-04-22,open
+NS023,"Shivaji Nagar, Pune",18.59314,73.89973,education,Tutoring required for 111 students,111,field_survey,2026-04-20,open
