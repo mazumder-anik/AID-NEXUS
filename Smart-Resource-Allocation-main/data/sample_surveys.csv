@@ -1,0 +1,9 @@
+need_id,area,lat,lng,category,description,reported_count,source,reported_at,status
+NS001,"Shivaji Nagar, Pune",18.59944,73.94067,sanitation,128 households without functional toilets,128,field_survey,2026-04-23,open
+NS002,"Kurla East, Mumbai",19.05371,72.88053,food,Urgent food shortage — 159 households affected,159,field_survey,2026-02-26,open
+NS003,"Shivaji Nagar, Pune",18.60513,73.93848,education,Tutoring required for 195 students,195,field_survey,2026-03-14,open
+NS004,"Dharavi, Mumbai",19.06846,72.83198,sanitation,Open defecation zone with 12 affected families,,field_survey,2026-03-16,open
+NS005,"Mankhurd, Mumbai",19.06405,72.96972,food,Food drought affecting 9 elderly residents,9,field_survey,2026-04-18,open
+NS006,"Shivaji Nagar, Pune",18.59944,73.94067,sanitation,128 households without functional toilets,128,field_survey,2026-04-27,open
+NS007,"Shivaji Nagar, Pune",18.59944,73.94067,sanitation,128 households without functional toilets,128,field_survey,2026-04-26,open
+NS008,"Shivaji Nagar, Pune",18.59944,73.94067,sanitation,128 households without functional toilets,128,field_survey,2026-04-27,open

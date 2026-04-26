@@ -1,0 +1,5 @@
+report_id,zone,geo_lat,geo_lng,issue_category,summary,beneficiaries,ngo_source,report_date,case_status
+NGO001,"Bhandup West, Mumbai",19.11217,72.93808,sanitation,134 households lack safe drinking water,134,ngo_report,2026/03/05,pending
+NGO002,"Dharavi, Mumbai",19.06121,72.88032,medical,Clean water access causing illness in 193 households,193,ngo_report,2026/03/03,open
+NGO003,"Kothrud, Pune",18.52677,73.776,food,Food drought affecting 128 elderly residents,128,ngo_report,2026/04/04,open
+NGO004,"Dharavi, Mumbai",19.02531,72.8446,Medical Help,87 people need primary health checkups,87,ngo_report,2026/04/07,open
