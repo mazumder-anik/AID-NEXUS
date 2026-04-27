@@ -1,6 +1,0 @@
-volunteer_id,name,lat,lng,skills,availability,max_distance_km,current_task,status
-V001,Preety Malhotra,19.08379,72.90899,"[""fundraising"", ""language_translation"", ""food_distribution"", ""data_entry""]",weekdays,10.0,,available
-V002,Amit Srivastava,18.51502,73.92701,"[""teaching"", ""fundraising"", ""community_outreach""]",both,15.0,,available
-V003,Sonal Jain,19.05152,72.89477,"[""food_distribution"", ""first_aid""]",both,10.0,,inactive
-V004,Rohan Desai,18.4626,73.93359,"[""food_distribution"", ""construction"", ""community_outreach"", ""first_aid""]",both,20.0,,available
-V005,Rajesh Pandey,18.56149,73.89541,"[""first_aid"", ""medical_aid"", ""logistics""]",weekends,8.0,,available
