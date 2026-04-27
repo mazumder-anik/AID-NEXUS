@@ -52,7 +52,7 @@ export default function Header({ onDemoRun, onRefresh }) {
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'12px' }}>
           <div>
             <h1 style={{ fontSize:'0.95rem', fontWeight:800, color:'#c7d2fe', letterSpacing:'0.01em' }}>
-              🌐 Smart Resource Allocation
+              🌐 AID NEXUX
             </h1>
             <p style={{ fontSize:'0.65rem', color:'#475569', marginTop:'1px' }}>
               NGO Volunteer Coordination Platform · Live Data

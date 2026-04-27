@@ -16,13 +16,13 @@ export default function Sidebar({ activeView, collapsed, onSelect, onToggleColla
             type="button"
             className="sidebar-logo-icon"
             onClick={collapsed ? onToggleCollapse : undefined}
-            title={collapsed ? 'Expand menu' : 'SmartAlloc'}
+            title={collapsed ? 'Expand menu' : 'AID NEXUX'}
           >
             <span className="icon-content">{collapsed ? '🌐' : '🌐'}</span>
           </button>
           {!collapsed && (
             <div>
-              <h2>SmartAlloc</h2>
+              <h2>AID NEXUX</h2>
               <p>Resource Coordination</p>
             </div>
           )}
