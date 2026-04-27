@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "start /B \"\" cmd /c \"cd .. && venv\\Scripts\\python.exe -m uvicorn backend.main:app --reload\" & vite",
+    "dev": "start /B \"\" cmd /c \"cd .. && py -3 -m uvicorn backend.main:app --reload\" & vite",
+    "backend": "cd .. && py -3 -m uvicorn backend.main:app --reload",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

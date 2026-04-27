@@ -368,6 +368,7 @@ class AIPrompt(BaseModel):
     prompt: str
 
 @app.post("/ask-ai", tags=["AI"])
+@app.post("/ai/query", tags=["AI"])
 def ask_ai_endpoint(data: AIPrompt, db: Session = Depends(get_db)):
     """Ask Gemini AI a question about the current open needs."""
     from backend.ai_assistant import ask_gemini
