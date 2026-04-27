@@ -66,7 +66,7 @@ export default function Analytics() {
   return (
     <div style={{
       height:'100%', overflowY:'auto', padding:'20px 24px',
-      background:'#0a0e1a',
+      background:'linear-gradient(135deg, #111315, #0f172a, #1e293b)',
     }}>
       <div style={{ marginBottom:20 }}>
         <h2 style={{ fontSize:'1rem', fontWeight:800, color:'#c7d2fe' }}>📊 Analytics Dashboard</h2>
@@ -79,18 +79,18 @@ export default function Analytics() {
       {stats && (
         <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:12, marginBottom:24 }}>
           {[
-            { label:'Total Needs',      value:stats.total_needs,       icon:'📋', color:'#818cf8' },
-            { label:'Total Volunteers', value:stats.total_volunteers,  icon:'👥', color:'#38bdf8' },
-            { label:'Total Matches',    value:stats.total_matches,     icon:'🤝', color:'#fbbf24' },
+            { label:'Total Needs',      value:stats.total_needs,       icon:'📋', color:'#facc15' },
+            { label:'Total Volunteers', value:stats.total_volunteers,  icon:'👥', color:'#a78bfa' },
+            { label:'Total Matches',    value:stats.total_matches,     icon:'🤝', color:'#06b6d4' },
             { label:'Coverage',         value:`${stats.coverage_pct}%`,icon:'🎯', color:'#4ade80' },
           ].map(c => (
             <div key={c.label} style={{
-              background:'rgba(21,29,53,0.8)', border:'1px solid rgba(99,102,241,0.2)',
+              background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
               borderRadius:10, padding:'14px 18px',
             }}>
               <div style={{ fontSize:'1.4rem' }}>{c.icon}</div>
               <div style={{ fontSize:'1.6rem', fontWeight:800, color:c.color, marginTop:4 }}>{c.value}</div>
-              <div style={{ fontSize:'0.65rem', color:'#475569', textTransform:'uppercase', letterSpacing:'0.08em' }}>
+              <div style={{ fontSize:'0.65rem', color:'#94a3b8', textTransform:'uppercase', letterSpacing:'0.08em' }}>
                 {c.label}
               </div>
             </div>
@@ -102,7 +102,7 @@ export default function Analytics() {
 
         {/* Bar: Needs by Category */}
         <div style={{
-          background:'rgba(21,29,53,0.8)', border:'1px solid rgba(99,102,241,0.2)',
+          background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
           borderRadius:10, padding:'16px',
         }}>
           <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#c7d2fe', marginBottom:12 }}>
@@ -122,7 +122,7 @@ export default function Analytics() {
 
         {/* Pie: Volunteer skill distribution */}
         <div style={{
-          background:'rgba(21,29,53,0.8)', border:'1px solid rgba(99,102,241,0.2)',
+          background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
           borderRadius:10, padding:'16px',
         }}>
           <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#c7d2fe', marginBottom:12 }}>
@@ -153,7 +153,7 @@ export default function Analytics() {
 
       {/* Timeline */}
       <div style={{
-        background:'rgba(21,29,53,0.8)', border:'1px solid rgba(99,102,241,0.2)',
+        background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
         borderRadius:10, padding:'16px', marginBottom:16,
       }}>
         <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#c7d2fe', marginBottom:12 }}>
@@ -184,7 +184,7 @@ export default function Analytics() {
 
       {/* Skill bar chart */}
       <div style={{
-        background:'rgba(21,29,53,0.8)', border:'1px solid rgba(99,102,241,0.2)',
+        background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
         borderRadius:10, padding:'16px',
       }}>
         <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#c7d2fe', marginBottom:12 }}>

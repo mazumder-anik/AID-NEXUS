@@ -13,6 +13,9 @@ export default function UrgentNeedsPanel({ refresh, onMatchRun }) {
   const [needs,   setNeeds]   = useState([]);
   const [loading, setLoading] = useState(false);
   const [busy,    setBusy]    = useState({});
+  const [matched, setMatched] = useState({});
+  const [resolved, setResolved] = useState({});
+  const [toast, setToast] = useState(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -30,6 +33,9 @@ export default function UrgentNeedsPanel({ refresh, onMatchRun }) {
     try {
       const res = await runMatching();
       onMatchRun && onMatchRun(res.data);
+      setMatched(m => ({ ...m, [need.need_id]: true }));
+      setToast({ message: 'Matching Successful', type: 'success' });
+      setTimeout(() => setToast(null), 5000);
       await load();
     } catch(e) { console.error(e); }
     finally { setBusy(b => ({ ...b, [need.need_id]: null })); }
@@ -39,6 +45,9 @@ export default function UrgentNeedsPanel({ refresh, onMatchRun }) {
     setBusy(b => ({ ...b, [need.need_id]: 'resolve' }));
     try {
       await resolveNeed(need.need_id);
+      setResolved(r => ({ ...r, [need.need_id]: true }));
+      setToast({ message: 'Resolving Successful', type: 'success' });
+      setTimeout(() => setToast(null), 5000);
       await load();
     } catch(e) { console.error(e); }
     finally { setBusy(b => ({ ...b, [need.need_id]: null })); }
@@ -63,7 +72,7 @@ export default function UrgentNeedsPanel({ refresh, onMatchRun }) {
         {needs.map((need, idx) => (
           <div
             key={need.need_id}
-            className={`need-card ${need.urgency_badge || 'Moderate'}`}
+            className={`need-card ${need.urgency_badge || 'Moderate'} ${matched[need.need_id] && resolved[need.need_id] ? 'completed' : ''}`}
             id={`need-card-${need.need_id}`}
           >
             <div className="need-card-header">
@@ -110,25 +119,30 @@ export default function UrgentNeedsPanel({ refresh, onMatchRun }) {
 
             <div className="need-actions">
               <button
-                className="btn btn-primary"
+                className={`btn ${matched[need.need_id] ? 'btn-matched' : 'btn-primary'}`}
                 onClick={() => handleMatch(need)}
-                disabled={!!busy[need.need_id]}
-                id={`match-btn-${need.need_id}`}
+                disabled={!!busy[need.need_id] || matched[need.need_id]}
               >
-                {busy[need.need_id] === 'match' ? <span className="spinner"/> : '🤝'} Match
+                {busy[need.need_id] === 'match' ? <span className="spinner"/> : matched[need.need_id] ? 'MATCHED' : '🤝 Match'}
               </button>
               <button
-                className="btn btn-success"
+                className={`btn ${resolved[need.need_id] ? 'btn-resolved' : 'btn-success'}`}
                 onClick={() => handleResolve(need)}
-                disabled={!!busy[need.need_id]}
-                id={`resolve-btn-${need.need_id}`}
+                disabled={!!busy[need.need_id] || resolved[need.need_id]}
               >
-                {busy[need.need_id] === 'resolve' ? <span className="spinner"/> : '✅'} Resolve
+                {busy[need.need_id] === 'resolve' ? <span className="spinner"/> : resolved[need.need_id] ? 'RESOLVED' : '✅ Resolve'}
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {toast && (
+        <div className={`toast toast-${toast.type}`}>
+          {toast.type === 'success' ? '✅' : '❌'} {toast.message}
+          <button onClick={() => setToast(null)} className="toast-close">×</button>
+        </div>
+      )}
     </div>
   );
 }

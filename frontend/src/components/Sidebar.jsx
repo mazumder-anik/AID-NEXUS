@@ -12,7 +12,14 @@ export default function Sidebar({ activeView, collapsed, onSelect, onToggleColla
     <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
       <div className="sidebar-logo">
         <div className="sidebar-logo-brand">
-          <div className="sidebar-logo-icon">🌐</div>
+          <button
+            type="button"
+            className="sidebar-logo-icon"
+            onClick={collapsed ? onToggleCollapse : undefined}
+            title={collapsed ? 'Expand menu' : 'SmartAlloc'}
+          >
+            <span className="icon-content">{collapsed ? '🌐' : '🌐'}</span>
+          </button>
           {!collapsed && (
             <div>
               <h2>SmartAlloc</h2>
@@ -20,14 +27,16 @@ export default function Sidebar({ activeView, collapsed, onSelect, onToggleColla
             </div>
           )}
         </div>
-        <button
-          type="button"
-          className="btn btn-ghost sidebar-logo-toggle"
-          onClick={onToggleCollapse}
-          title={collapsed ? 'Expand menu' : 'Collapse menu'}
-        >
-          ☰
-        </button>
+        {!collapsed && (
+          <button
+            type="button"
+            className="btn btn-ghost sidebar-logo-toggle"
+            onClick={onToggleCollapse}
+            title="Collapse menu"
+          >
+            ☰
+          </button>
+        )}
       </div>
 
       <nav className="sidebar-nav">
