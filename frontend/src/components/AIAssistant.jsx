@@ -1,67 +1,98 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { askAI } from '../api/index.js';
+
+const SUGGESTION_ITEMS = [
+  'Find best volunteer for this need',
+  'Summarize urgent needs in the area',
+  'Recommend priorities for medical supplies',
+  'Which needs are most time-sensitive?',
+];
 
 export default function AIAssistant() {
   const [prompt, setPrompt] = useState('');
-  const [response, setResponse] = useState('');
+  const [messages, setMessages] = useState([
+    { role: 'assistant', text: 'Hello! I can help you analyze urgent needs, volunteer matches, and data priorities.' },
+  ]);
   const [loading, setLoading] = useState(false);
+  const viewportRef = useRef(null);
 
-  const handleAsk = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (viewportRef.current) {
+      viewportRef.current.scrollTop = viewportRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  const addMessage = (message) => setMessages((current) => [...current, message]);
+
+  const handleAsk = async (event) => {
+    event.preventDefault();
     if (!prompt.trim()) return;
-    
+
+    const userMessage = { role: 'user', text: prompt.trim() };
+    addMessage(userMessage);
+    setPrompt('');
     setLoading(true);
+
     try {
-      const res = await askAI(prompt);
-      setResponse(res.data.response);
-    } catch (err) {
-      setResponse("Error communicating with AI. Make sure GEMINI_API_KEY is set in your .env file.");
+      const result = await askAI(userMessage.text);
+      addMessage({ role: 'assistant', text: result.data.response || 'No response received.' });
+    } catch (error) {
+      addMessage({
+        role: 'assistant',
+        text: 'Error communicating with AI assistant. Please check the backend and try again.',
+      });
+      console.error('AI ask failed', error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: '16px', height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#c7d2fe', marginBottom: '8px' }}>
-        ✨ Gemini AI Assistant
+    <div className="ai-assistant-panel">
+      <div className="ai-assistant-header">
+        <div>
+          <div className="panel-title">✨ AI Assistant</div>
+          <p className="panel-subtitle">
+            Ask questions about urgent needs, matching, or volunteer prioritization.
+          </p>
+        </div>
       </div>
-      <p style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '16px' }}>
-        Ask Gemini questions about the current community needs to get insights.
-      </p>
 
-      <form onSubmit={handleAsk} style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+      <div className="ai-suggestion-row">
+        {SUGGESTION_ITEMS.map((text) => (
+          <button
+            type="button"
+            key={text}
+            className="btn btn-ghost ai-suggestion"
+            onClick={() => setPrompt(text)}
+          >
+            {text}
+          </button>
+        ))}
+      </div>
+
+      <div className="ai-messages" ref={viewportRef}>
+        {messages.map((message, index) => (
+          <div key={index} className={`ai-message ${message.role}`}> 
+            <div className="ai-message-role">{message.role === 'user' ? 'You' : 'Assistant'}</div>
+            <div className="ai-message-text">{message.text}</div>
+          </div>
+        ))}
+      </div>
+
+      <form className="ai-input-row" onSubmit={handleAsk}>
         <input
           type="text"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          placeholder="e.g. What are the most critical medical needs right now?"
-          style={{
-            flex: 1, padding: '8px 12px', borderRadius: '6px',
-            background: 'rgba(15,22,41,0.6)', border: '1px solid rgba(99,102,241,0.3)',
-            color: '#f8fafc', fontSize: '0.8rem'
-          }}
+          placeholder="Ask the assistant about urgent needs or volunteer matching"
+          className="ai-input"
+          disabled={loading}
         />
-        <button
-          type="submit"
-          disabled={loading || !prompt.trim()}
-          style={{
-            padding: '8px 16px', borderRadius: '6px', background: '#4f46e5',
-            color: '#fff', border: 'none', cursor: loading ? 'not-allowed' : 'pointer',
-            fontSize: '0.8rem', fontWeight: 600, opacity: loading ? 0.7 : 1
-          }}
-        >
-          {loading ? 'Asking...' : 'Ask AI'}
+        <button type="submit" className="btn btn-primary" disabled={loading || !prompt.trim()}>
+          {loading ? 'Sending…' : 'Send'}
         </button>
       </form>
-
-      <div style={{
-        flex: 1, background: 'rgba(15,22,41,0.6)', border: '1px solid rgba(99,102,241,0.15)',
-        borderRadius: '6px', padding: '16px', overflowY: 'auto', color: '#f1f5f9',
-        fontSize: '0.85rem', lineHeight: '1.5', whiteSpace: 'pre-wrap'
-      }}>
-        {response ? response : <span style={{ color: '#64748b' }}>AI response will appear here...</span>}
-      </div>
     </div>
   );
 }

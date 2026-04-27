@@ -33,6 +33,6 @@ export const getSkillDistribution = () => api.get('/analytics/skills');
 export const getTimeline           = () => api.get('/analytics/timeline');
 
 // AI Assistant
-export const askAI = (prompt) => api.post('/ask-ai', { prompt });
+export const askAI = (prompt) => api.post('/ai/query', { prompt });
 
 export default api;

@@ -74,8 +74,9 @@ export default function NeedsMap({ refresh, onNeedSelect }) {
           className={`btn ${showVols ? 'btn-primary' : 'btn-ghost'}`}
           onClick={() => setShowVols(v => !v)}
           style={{ fontSize:'0.7rem' }}
+          title="Toggle volunteer markers"
         >
-          👥 {showVols ? 'Hide' : 'Show'} Volunteers
+          👥 {showVols ? 'Hide volunteers' : 'Show volunteers ready to serve'}
         </button>
       </div>
 
@@ -166,22 +167,33 @@ export default function NeedsMap({ refresh, onNeedSelect }) {
               <CircleMarker
                 key={vol.volunteer_id}
                 center={[vol.lat, vol.lng]}
-                radius={6}
+                radius={8}
                 pathOptions={{
                   color: vol.status === 'available' ? '#60a5fa' : '#94a3b8',
                   fillColor: vol.status === 'available' ? '#3b82f6' : '#64748b',
-                  fillOpacity: 0.8,
-                  weight: 1.5,
+                  fillOpacity: 0.9,
+                  weight: 2,
                 }}
+                eventHandlers={{ click: () => onNeedSelect && onNeedSelect(vol) }}
               >
                 <Popup>
-                  <div>
-                    <b style={{color:'#c7d2fe'}}>{vol.name}</b>
-                    <div style={{color:'#64748b', fontSize:'0.7rem', marginTop:4}}>
-                      Skills: {(vol.skills||[]).join(', ')}
+                  <div style={{ minWidth: 220 }}>
+                    <div style={{ fontWeight:700, color:'#3b82f6', marginBottom:6, fontSize:'0.85rem' }}>
+                      👤 Volunteer ready to serve
                     </div>
-                    <div style={{color:'#64748b', fontSize:'0.7rem'}}>
-                      Status: <span style={{color: vol.status==='available'?'#4ade80':'#fbbf24'}}>{vol.status}</span>
+                    <div style={{ fontWeight:700, color:'#c7d2fe', marginBottom:4, fontSize:'0.8rem' }}>
+                      {vol.name}
+                    </div>
+                    <div style={{ color:'#94a3b8', marginBottom:6, fontSize:'0.72rem', lineHeight:1.4 }}>
+                      {vol.skills?.length ? `Skills: ${vol.skills.join(', ')}` : 'Skills info not available'}
+                    </div>
+                    <div style={{ display:'flex', gap:8, flexWrap:'wrap', fontSize:'0.72rem', color:'#94a3b8' }}>
+                      <span style={{ color: vol.status === 'available' ? '#4ade80' : '#fbbf24' }}>
+                        Status: {vol.status}
+                      </span>
+                      <span>
+                        Location: {vol.area || `${vol.lat?.toFixed(2)}, ${vol.lng?.toFixed(2)}`}
+                      </span>
                     </div>
                   </div>
                 </Popup>

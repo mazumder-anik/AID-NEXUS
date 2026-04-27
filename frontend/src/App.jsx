@@ -1,66 +1,83 @@
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
-import Dashboard from './pages/Dashboard.jsx';
-import Analytics  from './pages/Analytics.jsx';
+import { useState } from 'react';
+import Sidebar from './components/Sidebar.jsx';
+import DashboardContent from './components/DashboardContent.jsx';
+import UrgentNeedsPanel from './components/UrgentNeedsPanel.jsx';
+import MatchPanel from './components/MatchPanel.jsx';
+import UploadPanel from './components/UploadPanel.jsx';
+import AIAssistant from './components/AIAssistant.jsx';
+import Analytics from './pages/Analytics.jsx';
 import './index.css';
 
-const NAV_ITEMS = [
-  { to:'/',          icon:'🗺',  label:'Dashboard'  },
-  { to:'/analytics', icon:'📊', label:'Analytics'  },
-];
+const VIEW_TITLES = {
+  needs: 'Urgent Needs',
+  matches: 'Match Results',
+  uploads: 'Upload Center',
+  ai: 'AI Assistant',
+};
 
 export default function App() {
+  const [activeView, setActiveView] = useState('dashboard');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const triggerRefresh = () => setRefreshKey((value) => value + 1);
+
+  const renderFullScreenView = () => {
+    switch (activeView) {
+      case 'needs':
+        return <UrgentNeedsPanel refresh={refreshKey} onMatchRun={triggerRefresh} />;
+      case 'matches':
+        return <MatchPanel refresh={refreshKey} />;
+      case 'uploads':
+        return <UploadPanel onUploadDone={triggerRefresh} />;
+      case 'ai':
+        return <AIAssistant />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <BrowserRouter>
-      <div className="app-shell">
-        {/* Sidebar */}
-        <aside className="sidebar">
-          <div className="sidebar-logo">
-            <div style={{ fontSize:'1.4rem', marginBottom:4 }}>🌐</div>
-            <h2>SmartAlloc</h2>
-            <p>Resource Coordination</p>
-          </div>
+    <div className={`app-shell ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
+      <Sidebar
+        activeView={activeView}
+        collapsed={sidebarCollapsed}
+        onSelect={setActiveView}
+        onToggleCollapse={() => setSidebarCollapsed((value) => !value)}
+      />
 
-          <nav style={{ flex:1 }}>
-            {NAV_ITEMS.map(item => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === '/'}
-                className={({ isActive }) =>
-                  `sidebar-nav-item${isActive ? ' active' : ''}`
-                }
+      <main className="main-content">
+        {activeView === 'analytics' ? (
+          <div className="page-panel full-screen-panel">
+            <Analytics />
+          </div>
+        ) : activeView === 'dashboard' ? (
+          <DashboardContent />
+        ) : (
+          <div className="page-panel full-screen-panel">
+            <div className="fullview-header">
+              <div>
+                <h1>{VIEW_TITLES[activeView] || 'Panel'}</h1>
+                <p className="panel-subtitle">
+                  {activeView === 'needs' && 'Review and action urgent field requests.'}
+                  {activeView === 'matches' && 'Manage volunteer assignments and match outcomes.'}
+                  {activeView === 'uploads' && 'Import field survey data and refresh the model.'}
+                  {activeView === 'ai' && 'Get AI-driven guidance on needs, matching, and priorities.'}
+                </p>
+              </div>
+              <button
+                type="button"
+                className="btn btn-ghost fullview-close"
+                onClick={() => setActiveView('dashboard')}
+                aria-label="Close panel"
               >
-                <span style={{ fontSize:'1rem' }}>{item.icon}</span>
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
-
-          {/* Footer */}
-          <div style={{
-            padding:'16px 20px',
-            borderTop:'1px solid rgba(99,102,241,0.15)',
-            fontSize:'0.6rem', color:'#334155',
-          }}>
-            <div style={{ color:'#4f46e5', fontWeight:700, marginBottom:2 }}>v1.0.0</div>
-            <div>Hackathon Demo</div>
-            <div style={{ marginTop:4 }}>
-              FastAPI · React · SQLite<br/>
-              Leaflet · Recharts
+                ×
+              </button>
             </div>
+            <div className="fullview-body">{renderFullScreenView()}</div>
           </div>
-        </aside>
-
-        {/* Page content */}
-        <Routes>
-          <Route path="/"          element={<Dashboard />}  />
-          <Route path="/analytics" element={
-            <div className="main-content" style={{ overflow:'auto' }}>
-              <Analytics />
-            </div>
-          }/>
-        </Routes>
-      </div>
-    </BrowserRouter>
+        )}
+      </main>
+    </div>
   );
 }

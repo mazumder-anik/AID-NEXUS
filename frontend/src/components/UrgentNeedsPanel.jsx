@@ -45,7 +45,7 @@ export default function UrgentNeedsPanel({ refresh, onMatchRun }) {
   };
 
   return (
-    <div style={{ display:'flex', flexDirection:'column', height:'50%', borderBottom:'1px solid rgba(99,102,241,0.15)' }}>
+    <div style={{ display:'flex', flexDirection:'column', height:'100%', borderBottom:'1px solid rgba(99,102,241,0.15)' }}>
       <div className="panel-header">
         <span className="panel-title">🚨 Urgent Needs</span>
         <button className="btn btn-ghost" onClick={load} style={{ fontSize:'0.65rem' }}>
