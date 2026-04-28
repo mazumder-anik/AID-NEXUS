@@ -1,4 +1,5 @@
 const SIDEBAR_ITEMS = [
+  { key: 'home', label: 'Home', icon: '🏠', description: 'Welcome to AID-NEXUS' },
   { key: 'dashboard', label: 'Dashboard', icon: '🗺', description: 'Overview and active needs' },
   { key: 'analytics', label: 'Analytics', icon: '📊', description: 'Charts and trend analysis' },
   { key: 'needs', label: 'Urgent Needs', icon: '🚨', description: 'Open urgent requests' },

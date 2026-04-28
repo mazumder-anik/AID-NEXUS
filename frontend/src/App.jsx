@@ -6,9 +6,11 @@ import MatchPanel from './components/MatchPanel.jsx';
 import UploadPanel from './components/UploadPanel.jsx';
 import AIAssistant from './components/AIAssistant.jsx';
 import Analytics from './pages/Analytics.jsx';
+import Home from './pages/Home.jsx';
 import './index.css';
 
 const VIEW_TITLES = {
+  home: 'Welcome to AID NEXUS',
   needs: 'Urgent Needs',
   matches: 'Match Results',
   uploads: 'Upload Center',
@@ -16,7 +18,7 @@ const VIEW_TITLES = {
 };
 
 export default function App() {
-  const [activeView, setActiveView] = useState('dashboard');
+  const [activeView, setActiveView] = useState('home');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -47,7 +49,9 @@ export default function App() {
       />
 
       <main className="main-content">
-        {activeView === 'analytics' ? (
+        {activeView === 'home' ? (
+          <Home onNavigate={setActiveView} />
+        ) : activeView === 'analytics' ? (
           <div className="page-panel full-screen-panel">
             <Analytics />
           </div>
