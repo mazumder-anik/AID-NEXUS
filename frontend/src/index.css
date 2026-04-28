@@ -454,19 +454,6 @@ body,
   transition: all 0.3s;
 }
 
-.sidebar.collapsed .sidebar-logo-icon:hover .icon-content {
-  opacity: 0;
-}
-
-.sidebar.collapsed .sidebar-logo-icon:hover::after {
-  content: '☰';
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  color: #facc15;
-  transform: scale(1.1);
-}
-
 .sidebar-footer {
   padding: 16px 20px;
   border-top: 1px solid rgba(99, 102, 241, 0.15);
