@@ -1,7 +1,3 @@
-This is a high-caliber `README.md` designed to look clean, professional, and sophisticated. It highlights the technical depth of your work while giving your team, **Dark Raven**, the credit you deserve.
-
----
-
 # # AID-NEXUS 🛰️
 ### *Optimizing Humanitarian Impact through Intelligent Coordination*
 
