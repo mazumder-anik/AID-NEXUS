@@ -80,4 +80,4 @@ python main.py
 > [!NOTE]
 > **AID-NEXUS** is currently a functional prototype developed for social impact. We are actively looking to scale this with real-world NGO partnerships.
 
-*A project by Dark Raven.(Anik Mazumder, Anweshan Das, Debmalya Gupta, Anusua Bhattacharjee*
+*A project by Dark Raven.*
