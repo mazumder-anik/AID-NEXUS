@@ -10,34 +10,47 @@ const SIDEBAR_ITEMS = [
 export default function Sidebar({ activeView, collapsed, onSelect, onToggleCollapse }) {
   return (
     <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
-      <div className="sidebar-logo">
-        <div className="sidebar-logo-brand">
-          <button
-            type="button"
-            className="sidebar-logo-icon"
-            onClick={collapsed ? onToggleCollapse : undefined}
-            title={collapsed ? 'Expand menu' : 'AID NEXUX'}
-          >
-            <span className="icon-content">{collapsed ? '🌐' : '🌐'}</span>
-          </button>
-          {!collapsed && (
-            <div>
-              <h2>AID NEXUX</h2>
-              <p>Resource Coordination</p>
-            </div>
-          )}
-        </div>
+      {/* Hamburger — always top-right, never overlaps logo */}
+      <button
+        type="button"
+        className="btn btn-ghost sidebar-logo-toggle"
+        onClick={onToggleCollapse}
+        title={collapsed ? 'Expand menu' : 'Collapse menu'}
+        style={{ position: 'absolute', top: '8px', right: '8px', zIndex: 10 }}
+      >
+        ☰
+      </button>
+
+      <div className="sidebar-logo" style={{ flexDirection: 'column', alignItems: 'center', padding: collapsed ? '52px 8px 12px' : '40px 8px 12px' }}>
+        {/* Logo centered, below the hamburger */}
+        <button
+          type="button"
+          className="sidebar-logo-icon"
+          onClick={collapsed ? onToggleCollapse : undefined}
+          title={collapsed ? 'Expand menu' : 'AID NEXUS'}
+          style={{ background: 'none', border: 'none', cursor: collapsed ? 'pointer' : 'default', padding: 0, display: 'flex', justifyContent: 'center' }}
+        >
+          <img
+            src="/logo.png"
+            alt="AID NEXUS Logo"
+            style={{
+              height: collapsed ? '58px' : '78px',
+              width: 'auto',
+              display: 'block',
+              margin: '0 auto',
+            }}
+          />
+        </button>
+
+        {/* Brand text — only when expanded */}
         {!collapsed && (
-          <button
-            type="button"
-            className="btn btn-ghost sidebar-logo-toggle"
-            onClick={onToggleCollapse}
-            title="Collapse menu"
-          >
-            ☰
-          </button>
+          <div style={{ textAlign: 'center', marginTop: '1px', width: '100%' }}>
+            <h2 style={{ margin: 0 }}>AID NEXUS</h2>
+            <p style={{ margin: 0 }}>Resource Coordination</p>
+          </div>
         )}
       </div>
+
 
       <nav className="sidebar-nav">
         {SIDEBAR_ITEMS.map((item) => (

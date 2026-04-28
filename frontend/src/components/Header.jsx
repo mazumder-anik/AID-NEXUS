@@ -52,7 +52,8 @@ export default function Header({ onDemoRun, onRefresh }) {
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'12px' }}>
           <div>
             <h1 style={{ fontSize:'0.95rem', fontWeight:800, color:'#c7d2fe', letterSpacing:'0.01em' }}>
-              🌐 AID NEXUX
+              <img src="/logo.png" alt="AID NEXUS Logo" style={{ height: '22px', width: 'auto', marginRight: '8px', verticalAlign: 'middle' }} />
+              AID NEXUS
             </h1>
             <p style={{ fontSize:'0.65rem', color:'#475569', marginTop:'1px' }}>
               NGO Volunteer Coordination Platform · Live Data
