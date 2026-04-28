@@ -12,7 +12,7 @@ const VIEW_TITLES = {
   needs: 'Urgent Needs',
   matches: 'Match Results',
   uploads: 'Upload Center',
-  ai: 'AI Assistant',
+  ai: '🤖 AID-NEXUS Chatbot',
 };
 
 export default function App() {
@@ -62,7 +62,7 @@ export default function App() {
                   {activeView === 'needs' && 'Review and action urgent field requests.'}
                   {activeView === 'matches' && 'Manage volunteer assignments and match outcomes.'}
                   {activeView === 'uploads' && 'Import field survey data and refresh the model.'}
-                  {activeView === 'ai' && 'Get AI-driven guidance on needs, matching, and priorities.'}
+                  {activeView === 'ai' && 'Chat with your AI coordinator — powered by live project data.'}
                 </p>
               </div>
               <button

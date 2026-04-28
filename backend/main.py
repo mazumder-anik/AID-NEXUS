@@ -364,26 +364,97 @@ def get_timeline(db: Session = Depends(get_db)):
 
 
 from pydantic import BaseModel
+from typing import List as TypingList
+
+class ChatMessage(BaseModel):
+    role: str   # "user" or "assistant"
+    text: str
+
 class AIPrompt(BaseModel):
     prompt: str
+    history: Optional[TypingList[ChatMessage]] = []
 
 @app.post("/ask-ai", tags=["AI"])
 @app.post("/ai/query", tags=["AI"])
 def ask_ai_endpoint(data: AIPrompt, db: Session = Depends(get_db)):
-    """Ask Gemini AI a question about the current open needs."""
-    from backend.ai_assistant import ask_gemini
-    
-    # Gather context from open needs
-    open_needs = db.query(Need).filter(Need.status == "open").all()
-    if not open_needs:
-        context = "There are no open needs currently."
-    else:
-        context_lines = []
-        for n in open_needs:
-            context_lines.append(f"- [Urgency: {n.urgency_badge}] {n.category.upper()} in {n.area}: {n.description} (Reported count: {n.reported_count})")
-        context = "\n".join(context_lines)
-    
-    response = ask_gemini(data.prompt, context)
+    """Ask the AI chatbot a question using full live project context."""
+    from backend.ai_assistant import ask_gemini_chatbot
+
+    # --- Gather full context from DB ---
+    open_needs_orm     = db.query(Need).filter(Need.status == "open").order_by(Need.urgency_score.desc().nullslast()).all()
+    all_volunteers_orm = db.query(Volunteer).all()
+    recent_matches_orm = db.query(Match).order_by(Match.assigned_at.desc()).limit(20).all()
+
+    def need_to_dict(n):
+        return {
+            "need_id":       n.need_id,
+            "area":          n.area,
+            "category":      n.category,
+            "description":   n.description,
+            "reported_count":n.reported_count,
+            "source":        n.source,
+            "urgency_score": n.urgency_score,
+            "urgency_badge": n.urgency_badge,
+            "status":        n.status,
+        }
+
+    def vol_to_dict(v):
+        return {
+            "volunteer_id":  v.volunteer_id,
+            "name":          v.name,
+            "skills":        v.skills or [],
+            "availability":  v.availability,
+            "max_distance_km": v.max_distance_km,
+            "status":        v.status,
+        }
+
+    def match_to_dict(m):
+        return {
+            "match_id":     m.match_id,
+            "need_id":      m.need_id,
+            "volunteer_id": m.volunteer_id,
+            "match_score":  m.match_score,
+            "distance_km":  m.distance_km,
+            "skill_overlap":m.skill_overlap or [],
+            "status":       m.status,
+        }
+
+    open_needs_list     = [need_to_dict(n) for n in open_needs_orm]
+    all_volunteers_list = [vol_to_dict(v) for v in all_volunteers_orm]
+    recent_matches_list = [match_to_dict(m) for m in recent_matches_orm]
+
+    # Build dashboard stats inline
+    needs_all      = db.query(Need).all()
+    volunteers_all = db.query(Volunteer).all()
+    matches_all    = db.query(Match).all()
+    cats = {}
+    for n in needs_all:
+        cats[n.category] = cats.get(n.category, 0) + 1
+    stats = {
+        "open_needs":           sum(1 for n in needs_all if n.status == "open"),
+        "in_progress_needs":    sum(1 for n in needs_all if n.status == "in_progress"),
+        "resolved_needs":       sum(1 for n in needs_all if n.status == "resolved"),
+        "total_needs":          len(needs_all),
+        "available_volunteers": sum(1 for v in volunteers_all if v.status == "available"),
+        "assigned_volunteers":  sum(1 for v in volunteers_all if v.status == "assigned"),
+        "total_volunteers":     len(volunteers_all),
+        "active_matches":       sum(1 for m in matches_all if m.status in ("pending", "accepted")),
+        "total_matches":        len(matches_all),
+        "needs_by_category":    cats,
+        "coverage_pct":         0.0,
+    }
+
+    # Deserialize history
+    history = [msg.dict() for msg in (data.history or [])]
+
+    response = ask_gemini_chatbot(
+        prompt=data.prompt,
+        open_needs=open_needs_list,
+        all_volunteers=all_volunteers_list,
+        recent_matches=recent_matches_list,
+        stats=stats,
+        conversation_history=history,
+    )
     return {"response": response}
 
 

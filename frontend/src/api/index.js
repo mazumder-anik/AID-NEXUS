@@ -32,7 +32,8 @@ export const runDemo = () => api.post('/demo/run');
 export const getSkillDistribution = () => api.get('/analytics/skills');
 export const getTimeline           = () => api.get('/analytics/timeline');
 
-// AI Assistant
-export const askAI = (prompt) => api.post('/ai/query', { prompt });
+// AI Assistant — sends prompt + optional conversation history
+export const askAI = (prompt, history = []) =>
+  api.post('/ai/query', { prompt, history });
 
 export default api;
