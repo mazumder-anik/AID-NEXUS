@@ -6,10 +6,10 @@ import {
 } from 'recharts';
 import { getDashboardStats, getSkillDistribution, getTimeline } from '../api/index.js';
 
-const COLORS = ['#6366f1','#f87171','#fbbf24','#34d399','#38bdf8','#a78bfa','#fb923c'];
+const COLORS = ['#facc15', '#f97316', '#38bdf8', '#22c55e', '#a78bfa', '#fb7185', '#f8b64c'];
 
 const CAT_COLORS = {
-  food:'#fbbf24', medical:'#f87171', education:'#818cf8',
+  food:'#facc15', medical:'#f87171', education:'#818cf8',
   shelter:'#34d399', sanitation:'#38bdf8',
 };
 
@@ -17,10 +17,10 @@ const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload?.length) {
     return (
       <div style={{
-        background:'#151d35', border:'1px solid rgba(99,102,241,0.3)',
+        background:'#070a0f', border:'1px solid rgba(250,204,21,0.25)',
         borderRadius:8, padding:'8px 12px', fontSize:'0.72rem',
       }}>
-        <p style={{color:'#c7d2fe',fontWeight:600,marginBottom:4}}>{label}</p>
+        <p style={{color:'#facc15',fontWeight:600,marginBottom:4}}>{label}</p>
         {payload.map((p,i) => (
           <p key={i} style={{color:p.color}}>{p.name}: {p.value}</p>
         ))}
@@ -66,11 +66,11 @@ export default function Analytics() {
   return (
     <div style={{
       height:'100%', overflowY:'auto', padding:'20px 24px',
-      background:'linear-gradient(135deg, #111315, #0f172a, #1e293b)',
+      background:'#090b10',
     }}>
       <div style={{ marginBottom:20 }}>
-        <h2 style={{ fontSize:'1rem', fontWeight:800, color:'#c7d2fe' }}>📊 Analytics Dashboard</h2>
-        <p style={{ fontSize:'0.7rem', color:'#475569', marginTop:2 }}>
+        <h2 style={{ fontSize:'1rem', fontWeight:800, color:'#facc15' }}>📊 Analytics Dashboard</h2>
+        <p style={{ fontSize:'0.7rem', color:'#94a3b8', marginTop:2 }}>
           Real-time insights from aggregated community data
         </p>
       </div>
@@ -81,11 +81,11 @@ export default function Analytics() {
           {[
             { label:'Total Needs',      value:stats.total_needs,       icon:'📋', color:'#facc15' },
             { label:'Total Volunteers', value:stats.total_volunteers,  icon:'👥', color:'#a78bfa' },
-            { label:'Total Matches',    value:stats.total_matches,     icon:'🤝', color:'#06b6d4' },
-            { label:'Coverage',         value:`${stats.coverage_pct}%`,icon:'🎯', color:'#4ade80' },
+            { label:'Total Matches',    value:stats.total_matches,     icon:'🤝', color:'#facc15' },
+            { label:'Coverage',         value:`${stats.coverage_pct}%`,icon:'🎯', color:'#22c55e' },
           ].map(c => (
             <div key={c.label} style={{
-              background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
+              background:'rgba(255,255,255,0.03)', border:'1px solid rgba(250,204,21,0.18)',
               borderRadius:10, padding:'14px 18px',
             }}>
               <div style={{ fontSize:'1.4rem' }}>{c.icon}</div>
@@ -102,16 +102,16 @@ export default function Analytics() {
 
         {/* Bar: Needs by Category */}
         <div style={{
-          background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
+          background:'rgba(255,255,255,0.03)', border:'1px solid rgba(250,204,21,0.18)',
           borderRadius:10, padding:'16px',
         }}>
-          <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#c7d2fe', marginBottom:12 }}>
+          <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#facc15', marginBottom:12 }}>
             📋 Needs by Category
           </div>
           <ResponsiveContainer width="100%" height={180}>
             <BarChart data={catData} barCategoryGap="30%">
-              <XAxis dataKey="name" tick={{ fill:'#64748b', fontSize:11 }} axisLine={false} tickLine={false}/>
-              <YAxis tick={{ fill:'#64748b', fontSize:11 }} axisLine={false} tickLine={false}/>
+              <XAxis dataKey="name" tick={{ fill:'#94a3b8', fontSize:11 }} axisLine={false} tickLine={false}/>
+              <YAxis tick={{ fill:'#94a3b8', fontSize:11 }} axisLine={false} tickLine={false}/>
               <Tooltip content={<CustomTooltip/>}/>
               <Bar dataKey="value" radius={[4,4,0,0]}>
                 {catData.map((e,i) => <Cell key={i} fill={e.color}/>)}
@@ -122,10 +122,10 @@ export default function Analytics() {
 
         {/* Pie: Volunteer skill distribution */}
         <div style={{
-          background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
+          background:'rgba(255,255,255,0.03)', border:'1px solid rgba(250,204,21,0.18)',
           borderRadius:10, padding:'16px',
         }}>
-          <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#c7d2fe', marginBottom:12 }}>
+          <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#facc15', marginBottom:12 }}>
             👥 Volunteer Skills Distribution
           </div>
           <ResponsiveContainer width="100%" height={180}>
@@ -153,30 +153,30 @@ export default function Analytics() {
 
       {/* Timeline */}
       <div style={{
-        background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
+        background:'rgba(255,255,255,0.03)', border:'1px solid rgba(250,204,21,0.18)',
         borderRadius:10, padding:'16px', marginBottom:16,
       }}>
-        <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#c7d2fe', marginBottom:12 }}>
+        <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#facc15', marginBottom:12 }}>
           📈 Needs Over Time (Open vs Resolved)
         </div>
         <ResponsiveContainer width="100%" height={180}>
           <AreaChart data={timelineData}>
             <defs>
               <linearGradient id="openGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%"  stopColor="#6366f1" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
+                <stop offset="5%"  stopColor="#facc15" stopOpacity={0.28}/>
+                <stop offset="95%" stopColor="#facc15" stopOpacity={0}/>
               </linearGradient>
               <linearGradient id="resolvedGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%"  stopColor="#22c55e" stopOpacity={0.3}/>
+                <stop offset="5%"  stopColor="#22c55e" stopOpacity={0.28}/>
                 <stop offset="95%" stopColor="#22c55e" stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(99,102,241,0.1)"/>
-            <XAxis dataKey="week" tick={{ fill:'#64748b', fontSize:10 }} axisLine={false} tickLine={false}/>
-            <YAxis tick={{ fill:'#64748b', fontSize:10 }} axisLine={false} tickLine={false}/>
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(250,204,21,0.12)"/>
+            <XAxis dataKey="week" tick={{ fill:'#94a3b8', fontSize:10 }} axisLine={false} tickLine={false}/>
+            <YAxis tick={{ fill:'#94a3b8', fontSize:10 }} axisLine={false} tickLine={false}/>
             <Tooltip content={<CustomTooltip/>}/>
             <Legend formatter={(v) => <span style={{color:'#94a3b8', fontSize:11}}>{v}</span>}/>
-            <Area type="monotone" dataKey="open"     name="Open"     stroke="#6366f1" fill="url(#openGrad)"     strokeWidth={2}/>
+            <Area type="monotone" dataKey="open"     name="Open"     stroke="#facc15" fill="url(#openGrad)"     strokeWidth={2}/>
             <Area type="monotone" dataKey="resolved" name="Resolved" stroke="#22c55e" fill="url(#resolvedGrad)" strokeWidth={2}/>
           </AreaChart>
         </ResponsiveContainer>
@@ -184,19 +184,19 @@ export default function Analytics() {
 
       {/* Skill bar chart */}
       <div style={{
-        background:'rgba(21,29,53,0.9)', border:'1px solid rgba(99,102,241,0.3)',
+        background:'rgba(255,255,255,0.03)', border:'1px solid rgba(250,204,21,0.18)',
         borderRadius:10, padding:'16px',
       }}>
-        <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#c7d2fe', marginBottom:12 }}>
+        <div style={{ fontSize:'0.78rem', fontWeight:700, color:'#facc15', marginBottom:12 }}>
           🔧 Top 10 Volunteer Skills
         </div>
         <ResponsiveContainer width="100%" height={180}>
           <BarChart data={skillData} layout="vertical" barCategoryGap="20%">
-            <XAxis type="number" tick={{ fill:'#64748b', fontSize:10 }} axisLine={false} tickLine={false}/>
+            <XAxis type="number" tick={{ fill:'#94a3b8', fontSize:10 }} axisLine={false} tickLine={false}/>
             <YAxis type="category" dataKey="name" tick={{ fill:'#94a3b8', fontSize:10 }}
               axisLine={false} tickLine={false} width={110}/>
             <Tooltip content={<CustomTooltip/>}/>
-            <Bar dataKey="count" fill="#6366f1" radius={[0,4,4,0]}>
+            <Bar dataKey="count" fill="#facc15" radius={[0,4,4,0]}>
               {skillData.map((e,i) => <Cell key={i} fill={COLORS[i % COLORS.length]}/>)}
             </Bar>
           </BarChart>
