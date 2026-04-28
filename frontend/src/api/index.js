@@ -1,10 +1,12 @@
 import axios from 'axios';
 
+// 1. Create a dynamic URL that checks for the Vercel variable first
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: API_BASE_URL, // 2. Use the dynamic URL here
   timeout: 30000,
 });
-
 // Needs
 export const getNeedsAll    = (params = {}) => api.get('/needs', { params });
 export const getUrgentNeeds = ()            => api.get('/needs/urgent');
